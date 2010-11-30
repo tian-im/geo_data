@@ -1,0 +1,59 @@
+<%# styling%>
+<style type="text/css">
+  h1{
+    font-size: 24px;
+    color: #4F81BD;
+  }
+  body{
+    font-size: 12px;
+    font-family:Helvetica, Arial, sans-serif;
+  }
+  .stats .name{
+    font-weight: bold;
+  }
+  table th {
+    padding: 3px 8px;
+    background: #1F497D;
+    color: white;
+  }
+  table td {
+    padding: 3px 8px;
+    background: #E7EFF9;
+  }
+  table tr.even td {
+    background: #C1D6EF;
+  }
+</style>
+
+<%# page title%>
+<h1>Geo Data for Australia suburbs</h1>
+<%# result stats%>
+<div class="stats">
+  <span class="name">Result Count:</span>
+  <span class="value"><%= @postcodes.size %></span>
+</div>
+<%# table of result%>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Suburb</th>
+    <th>State</th>
+    <th>Postcode</th>
+    <th>Latitude</th>
+    <th>Longtitude</th>
+  </tr>
+
+  <%
+  odd = 1
+  @postcodes.each do |p| %>
+    <tr class="<%= odd % 2 == 0 ? 'even': 'odd' %>">
+      <td>#<%= p.id %></td>
+      <td><%= p.suburb %></td>
+      <td><%= p.state %></td>
+      <td><%= p.postcode %></td>
+      <td><%= p.latitude %></td>
+      <td><%= p.longtitude %></td>
+    </tr>
+    <% odd += 1
+  end %>
+</table>
